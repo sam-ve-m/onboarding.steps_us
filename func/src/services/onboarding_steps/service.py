@@ -5,21 +5,22 @@ from decouple import config
 from src.domain.enums.file.user_file import UserFileType
 from src.domain.exceptions.model import BadRequestError
 from src.repositories.file.repository import FileRepository
-from src.repositories.user.repository import OnboardingStepsRepository
+from src.repositories.user.repository import UserRepository
 from src.services.onboarding_steps_builder.service import OnboardingStepBuilderUS
 
 
 class OnboardingSteps:
     bucket_name = config("AWS_BUCKET_USERS_FILES")
-    user_repository = OnboardingStepsRepository
+    user_repository = UserRepository
     file_repository = FileRepository
+    steps_builder = OnboardingStepBuilderUS
 
     @classmethod
     async def onboarding_user_current_step_us(
         cls,
         payload: dict,
     ) -> dict:
-        onboarding_step_builder = OnboardingStepBuilderUS()
+        onboarding_step_builder = cls.steps_builder()
         user_unique_id = payload["user"]["unique_id"]
 
         current_user = await cls.user_repository.find_user(
