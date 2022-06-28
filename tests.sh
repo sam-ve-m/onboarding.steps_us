@@ -6,7 +6,7 @@ cp -r tests/ testing/ || { echo "ERROR: Failed to copy test folder. [FINISHING S
 cp -rf func/. testing/ || { echo "ERROR: Failed to copy src folder. [FINISHING SCRIPT]"; rm -rf testing; exit; }
 cd testing || { echo "ERROR: Failed to change folder. [FINISHING SCRIPT]"; rm -rf testing; exit; }
 export PYTHONPATH="$PWD"
-pytest -v || { echo "ERROR: Error while running Pytest. Make sure it is installed or check if the tests ran correctly. [CONTINUING SCRIPT]";  }
+pytest -vv || { echo "ERROR: Error while running Pytest. Make sure it is installed or check if the tests ran correctly. [CONTINUING SCRIPT]";  }
 cd .. || { echo "ERROR: Failed to exit test execution folder. [FINISHING SCRIPT]"; exit; }
 rm -rf testing || { echo "ERROR: Failed to remove test execution folder. [FINISHING SCRIPT]"; exit; }
 echo "Tests completed successfully."
