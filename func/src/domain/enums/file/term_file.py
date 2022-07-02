@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class TermsFileType(Enum):
+class UserTerms(Enum):
     TERM_APPLICATION = "term_application"
     TERM_OPEN_ACCOUNT = "term_open_account"
     TERM_REFUSAL = "term_refusal"

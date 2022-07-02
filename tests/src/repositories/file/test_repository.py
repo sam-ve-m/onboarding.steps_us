@@ -1,15 +1,16 @@
 from enum import Enum
-from unittest.mock import AsyncMock
+from unittest.mock import AsyncMock, patch
 
 import pytest
+from etria_logger import Gladsheim
 from pytest import mark
 
-from src.domain.enums.file.user_file import UserFileType
-from src.domain.exceptions.model import InternalServerError
+from src.domain.enums.file.user_file import UserDocument
+from src.domain.exceptions.model import InvalidFileType
 from src.infrastructures.s3.infrastructure import S3Infrastructure
 from src.repositories.file.repository import FileRepository
 
-user_file_type_stub = UserFileType.SELFIE
+user_file_type_stub = UserDocument.DOCUMENT_BACK
 unique_id_stub = "uniqueid"
 bucket_name_stub = "bucket_name"
 
@@ -80,29 +81,32 @@ async def test_user_file_exists_when_file_not_exists(monkeypatch):
 
 @mark.asyncio
 async def test_user_file_exists_exception(monkeypatch):
-    with pytest.raises(InternalServerError):
+    with pytest.raises(Exception):
         result = await FileRepository.user_file_exists(
             file_type=user_file_type_stub, unique_id="", bucket_name=bucket_name_stub
         )
 
 
-def test__get_file_extension_by_type():
-    enum_dummy = UserFileType.SELFIE
-    result = FileRepository._get_file_extension_by_type(enum_dummy)
-    expected_result = ".jpg"
-    assert result == expected_result
+def test_validate_file_type():
+    enum_dummy = UserDocument.DOCUMENT_BACK
+    result = FileRepository._validate_file_type(enum_dummy)
+    assert result is None
 
 
-def test__get_file_extension_by_type_exception():
+@patch.object(Gladsheim, "error")
+def test_validate_file_type_exception(etria_mock):
     class EnumDummy(Enum):
         DUMMY = "dummy"
 
-    with pytest.raises(InternalServerError):
-        result = FileRepository._get_file_extension_by_type(EnumDummy.DUMMY)
+    with pytest.raises(InvalidFileType):
+        result = FileRepository._validate_file_type(EnumDummy.DUMMY)
+    assert etria_mock.called
 
 
 @mark.asyncio
 async def test__resolve_user_path():
-    result = await FileRepository._resolve_user_path("testeid", UserFileType.SELFIE)
-    expected_result = "testeid/user_selfie/"
+    result = await FileRepository._resolve_user_path(
+        "testeid", UserDocument.DOCUMENT_FRONT
+    )
+    expected_result = "testeid/document_front/"
     assert result == expected_result

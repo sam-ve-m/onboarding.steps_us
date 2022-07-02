@@ -4,8 +4,6 @@ import aioboto3
 from decouple import config
 from etria_logger import Gladsheim
 
-from src.domain.exceptions.model import InternalServerError
-
 
 class S3Infrastructure:
 
@@ -28,9 +26,10 @@ class S3Infrastructure:
             session = await S3Infrastructure._get_session()
             async with session.client("s3") as s3_client:
                 yield s3_client
-        except Exception as e:
-            Gladsheim.error(error=e)
-            raise InternalServerError("files.error")
+        except Exception as ex:
+            message = "error trying to get s3 client"
+            Gladsheim.error(error=ex, message=message)
+            raise ex
 
     @classmethod
     @asynccontextmanager
@@ -39,9 +38,10 @@ class S3Infrastructure:
             session = await S3Infrastructure._get_session()
             async with session.resource("s3") as s3_resource:
                 yield s3_resource
-        except Exception as e:
-            Gladsheim.error(error=e)
-            raise InternalServerError("files.error")
+        except Exception as ex:
+            message = "error trying to get s3 resource"
+            Gladsheim.error(error=ex, message=message)
+            raise ex
 
     @classmethod
     @asynccontextmanager
@@ -57,6 +57,7 @@ class S3Infrastructure:
             ) as s3:
                 bucket = await s3.Bucket(bucket_name)
                 yield bucket
-        except Exception as e:
-            Gladsheim.error(error=e)
-            raise InternalServerError("files.error")
+        except Exception as ex:
+            message = "error trying to get s3 bucket"
+            Gladsheim.error(error=ex, message=message)
+            raise ex

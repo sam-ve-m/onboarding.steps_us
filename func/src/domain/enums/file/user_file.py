@@ -1,7 +1,6 @@
 from enum import Enum
 
 
-class UserFileType(Enum):
-    SELFIE = "user_selfie"
+class UserDocument(Enum):
     DOCUMENT_FRONT = "document_front"
     DOCUMENT_BACK = "document_back"

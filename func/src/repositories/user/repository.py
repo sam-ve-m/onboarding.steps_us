@@ -1,8 +1,8 @@
-from typing import Optional
-
 from decouple import config
 from etria_logger import Gladsheim
 
+from src.domain.exceptions.model import UserDataNotFound
+from src.domain.user.model import User
 from src.infrastructures.mongo_db.infrastructure import MongoDBInfrastructure
 
 
@@ -22,16 +22,30 @@ class UserRepository:
             message = (
                 f"UserRepository::_get_collection::Error when trying to get collection"
             )
-            Gladsheim.error(error=ex, message=message)
+            Gladsheim.error(
+                error=ex,
+                message=message,
+                database=cls.database,
+                collection=cls.collection,
+            )
             raise ex
 
     @classmethod
-    async def find_user(cls, query: dict) -> Optional[dict]:
+    async def find_user(cls, query: dict) -> User:
         try:
             collection = await cls.__get_collection()
-            data = await collection.find_one(query)
-            return data
+            user_document = await collection.find_one(query)
+            if user_document is None:
+                user_document = {}
+                Gladsheim.error(
+                    error=UserDataNotFound("common.register_not_exists"),
+                    message="User not found",
+                    query=query,
+                )
+
+            user = User(user_document)
+            return user
 
         except Exception as ex:
-            Gladsheim.error(error=ex)
+            Gladsheim.error(error=ex, query=query)
             raise ex

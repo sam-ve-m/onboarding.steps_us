@@ -2,9 +2,9 @@ class UnauthorizedError(Exception):
     pass
 
 
-class InternalServerError(Exception):
+class UserDataNotFound(Exception):
     pass
 
 
-class BadRequestError(Exception):
+class InvalidFileType(Exception):
     pass
