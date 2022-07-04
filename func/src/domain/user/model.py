@@ -34,6 +34,12 @@ class User:
             .get("us", {})
             .get("time_experience")
         )
+        self.__created_on_dw = (
+            user_document.get("portfolios", {})
+            .get("default", {})
+            .get("us", {})
+            .get("dw_id")
+        )
         self.__w8_confirmation = (
             user_document.get("external_exchange_requirements", {})
             .get("us", {})
@@ -82,7 +88,9 @@ class User:
 
     def has_time_experience_data(self) -> bool:
         has_time_experience_data = self.__time_experience is not None
-        return has_time_experience_data
+        user_created_in_dw = self.__created_on_dw is not None
+        completed_time_experience_step = has_time_experience_data and user_created_in_dw
+        return completed_time_experience_step
 
     def has_w8_confirmation_data(self) -> bool:
         has_w8_confirmation_data = self.__w8_confirmation is not None

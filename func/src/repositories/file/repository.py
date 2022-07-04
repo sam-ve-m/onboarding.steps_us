@@ -40,11 +40,7 @@ class FileRepository:
 
         except Exception as ex:
             message = "invalid file type passed to the function"
-            Gladsheim.error(
-                error=ex,
-                message=message,
-                file_type=file_type
-            )
+            Gladsheim.error(error=ex, message=message, file_type=file_type)
             raise InvalidFileType("files.error")
 
     @staticmethod
