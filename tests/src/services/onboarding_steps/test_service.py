@@ -25,6 +25,7 @@ user_document_dummy = {
         "term_gringo_world_general_advices": "term",
         "term_money_corp": "term",
     },
+    "portfolios": {"default": {"us": {"dw_id": "conta"}}},
     "external_exchange_requirements": {
         "us": {
             "is_politically_exposed": False,
