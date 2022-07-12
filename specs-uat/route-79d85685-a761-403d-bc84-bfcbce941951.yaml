@@ -1,0 +1,23 @@
+apiVersion: fission.io/v1
+kind: HTTPTrigger
+metadata:
+  creationTimestamp: null
+  name: 79d85685-a761-403d-bc84-bfcbce941951
+  namespace: default
+spec:
+  createingress: false
+  functionref:
+    functionweights: null
+    name: onboarding-steps-us-fn
+    type: name
+  host: ""
+  ingressconfig:
+    annotations: null
+    host: '*'
+    path: /onboarding_steps_us
+    tls: ""
+  method: ""
+  methods:
+  - GET
+  prefix: ""
+  relativeurl: /onboarding_steps_us
