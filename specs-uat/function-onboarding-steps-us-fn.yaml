@@ -1,0 +1,55 @@
+include:
+- ./func/*
+kind: ArchiveUploadSpec
+name: func-W5uL
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: onboarding-steps-us-fn-1daacd29-d0f6-4518-a94d-52b3d5d21bdb
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+  environment:
+    name: onboarding-steps-us-env
+    namespace: default
+  source:
+    checksum: {}
+    type: url
+    url: archive://func-W5uL
+status:
+  buildstatus: pending
+  lastUpdateTimestamp: "2022-06-28T13:57:41Z"
+
+---
+apiVersion: fission.io/v1
+kind: Function
+metadata:
+  creationTimestamp: null
+  name: onboarding-steps-us-fn
+  namespace: default
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: poolmgr
+      MaxScale: 0
+      MinScale: 0
+      SpecializationTimeout: 120
+      TargetCPUPercent: 0
+    StrategyType: execution
+  concurrency: 500
+  environment:
+    name: onboarding-steps-us-env
+    namespace: default
+  functionTimeout: 60
+  idletimeout: 120
+  package:
+    functionName: main.get_onboarding_step_us
+    packageref:
+      name: onboarding-steps-us-fn-1daacd29-d0f6-4518-a94d-52b3d5d21bdb
+      namespace: default
+  requestsPerPod: 100000
+  resources: {}
