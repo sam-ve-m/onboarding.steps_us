@@ -25,7 +25,7 @@ spec:
         - name: MONGODB_USER_COLLECTION
           value: "users"
         - name: MONGO_CONNECTION_URL
-          value: "mongodb://bnd:jkl321pqr@172.30.10.75:41000/?authSource=admin&replicaSet=rslionx&readPreference=secondary"
+          value: "mongodb://jormungandr:LIwn1In32LdowPqma@172.30.10.75:41000/?authSource=admin&replicaSet=rslionx&readPreference=secondary"
         - name: AWS_ACCESS_KEY_ID
           value: "AKIATZVFXI25USQWCS5O"
         - name: AWS_SECRET_ACCESS_KEY
@@ -59,9 +59,9 @@ spec:
         - name: HEIMDALL_REDIS_DB
           value: "0"
         - name: HEIMDALL_REDIS_USER
-          value: "bnd"
+          value: "heimdal"
         - name: HEIMDALL_REDIS_PASSWORD
-          value: "jkl321pqr"
+          value: "LLOnmUUffhaUHnewIz"
         - name: ASGI_FRAMEWORK
           value: "HYPERCORN"
   version: 2
