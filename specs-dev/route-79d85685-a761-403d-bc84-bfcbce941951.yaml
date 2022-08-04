@@ -14,10 +14,10 @@ spec:
   ingressconfig:
     annotations: null
     host: '*'
-    path: /onboarding_steps_us
+    path: /onboarding/steps_us
     tls: ""
   method: ""
   methods:
   - GET
   prefix: ""
-  relativeurl: /onboarding_steps_us
+  relativeurl: /onboarding/steps_us
