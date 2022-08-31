@@ -53,6 +53,7 @@ build_return_dummy_all_true = {
     "employ": True,
     "time_experience": True,
     "w8_confirmation": True,
+    "finished": True,
     "current_step": "finished",
 }
 build_return_dummy_all_false = {
@@ -65,6 +66,7 @@ build_return_dummy_all_false = {
     "employ": False,
     "time_experience": False,
     "w8_confirmation": False,
+    "finished": False,
     "current_step": "terms",
 }
 
