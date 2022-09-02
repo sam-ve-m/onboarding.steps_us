@@ -1,5 +1,6 @@
 from unittest.mock import patch
 
+from decouple import Config
 from etria_logger import Gladsheim
 from flask import Flask
 from heimdall_client.bifrost import Heimdall
@@ -7,8 +8,9 @@ from heimdall_client.bifrost import HeimdallStatusResponses
 from pytest import mark
 from werkzeug.test import Headers
 
-from main import get_onboarding_step_us
-from src.services.onboarding_steps.service import OnboardingSteps
+with patch.object(Config, "__call__"):
+    from main import get_onboarding_step_us
+    from src.services.onboarding_steps.service import OnboardingSteps
 
 decoded_jwt_ok = {
     "is_payload_decoded": True,
