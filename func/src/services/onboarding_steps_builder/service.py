@@ -104,6 +104,10 @@ class OnboardingStepBuilder:
             self.__step += 1
         return w8_confirmation_step
 
+    def onboarding_is_finished(self) -> bool:
+        is_finished = self.is_current_step(OnboardingStepsEnum.FINISHED)
+        return is_finished
+
     async def build(self, document_exists: bool) -> dict:
         onboarding_steps = {
             OnboardingStepsEnum.TERMS.value: self.terms_step(),
@@ -117,6 +121,7 @@ class OnboardingStepBuilder:
             OnboardingStepsEnum.EMPLOY.value: self.employ_step(),
             OnboardingStepsEnum.TIME_EXPERIENCE.value: self.time_experience_step(),
             OnboardingStepsEnum.W8_CONFIRMATION.value: self.w8_confirmation_step(),
+            OnboardingStepsEnum.FINISHED.value: self.onboarding_is_finished(),
             OnboardingStepsEnum.CURRENT.value: self.get_current_step().value,
         }
         return onboarding_steps
