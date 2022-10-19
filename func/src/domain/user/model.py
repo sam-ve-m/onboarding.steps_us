@@ -49,7 +49,7 @@ class User:
     @staticmethod
     def _is_single_terms_signed(user_signed_terms: set) -> bool:
         single_terms_that_needs_be_signed = {
-            UserTerms.TERM_OUROINVEST,
+            UserTerms.TERM_OUROINVEST.value,
             UserTerms.TERM_ALL_AGREEMENT_GRINGO_DL.value,
             UserTerms.TERM_GRINGO_WORLD.value,
             UserTerms.TERM_GRINGO_WORLD_GENERAL_ADVICES.value,
