@@ -2,10 +2,10 @@ from unittest.mock import patch
 
 from pytest import mark
 
-from src.domain.user.model import User
-from src.repositories.file.repository import FileRepository
-from src.repositories.user.repository import UserRepository
-from src.services.onboarding_steps.service import OnboardingSteps
+from func.src.domain.user.model import User
+from func.src.repositories.file.repository import FileRepository
+from func.src.repositories.user.repository import UserRepository
+from func.src.services.onboarding_steps.service import OnboardingSteps
 
 payload_dummy = {"user": {"unique_id": "test"}}
 
@@ -24,6 +24,16 @@ user_document_dummy = {
         "term_gringo_world": "term",
         "term_gringo_world_general_advices": "term",
         "term_money_corp": "term",
+        'term_ouroinvest': "term",
+        'term_all_agreement_gringo_dl': "term",
+        'term_and_privacy_policy_data_sharing_policy_dl_pt': "term",
+        'term_and_privacy_policy_data_sharing_policy_dl_us': "term",
+        'term_open_account_dl_us': "term",
+        'term_open_account_dl_pt': "term",
+        'term_business_continuity_plan_dl_us': "term",
+        'term_business_continuity_plan_dl_pt': "term",
+        'term_customer_relationship_summary_dl_us': "term",
+        'term_customer_relationship_summary_dl_pt': "term",
     },
     "portfolios": {"default": {"us": {"dw_id": "conta"}}},
     "external_exchange_requirements": {

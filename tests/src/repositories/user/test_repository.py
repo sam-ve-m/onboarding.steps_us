@@ -3,8 +3,8 @@ from unittest.mock import patch, AsyncMock
 from etria_logger import Gladsheim
 from pytest import mark, raises
 
-from src.domain.user.model import User
-from src.repositories.user.repository import UserRepository
+from func.src.domain.user.model import User
+from func.src.repositories.user.repository import UserRepository
 
 
 @mark.asyncio

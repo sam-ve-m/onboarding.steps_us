@@ -2,10 +2,10 @@ import asyncio
 
 from decouple import config
 
-from src.domain.enums.file.user_file import UserDocument
-from src.repositories.file.repository import FileRepository
-from src.repositories.user.repository import UserRepository
-from src.services.onboarding_steps_builder.service import OnboardingStepBuilder
+from func.src.domain.enums.file.user_file import UserDocument
+from func.src.repositories.file.repository import FileRepository
+from func.src.repositories.user.repository import UserRepository
+from func.src.services.onboarding_steps_builder.service import OnboardingStepBuilder
 
 
 class OnboardingSteps:

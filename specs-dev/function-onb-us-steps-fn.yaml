@@ -1,35 +1,35 @@
 include:
-- ./func/*
+- fission.py
 kind: ArchiveUploadSpec
-name: func-W5uL
+name: fission-py-PQAL
 
 ---
 apiVersion: fission.io/v1
 kind: Package
 metadata:
   creationTimestamp: null
-  name: onboarding-steps-us-fn-1daacd29-d0f6-4518-a94d-52b3d5d21bdb
+  name: onb-us-steps-fn-73f2450e-e9d5-424f-bc84-520ceb696201
   namespace: default
 spec:
   deployment:
     checksum: {}
+    type: url
+    url: archive://fission-py-PQAL
   environment:
-    name: onboarding-steps-us-env
+    name: onb-us-steps-env
     namespace: default
   source:
     checksum: {}
-    type: url
-    url: archive://func-W5uL
 status:
-  buildstatus: pending
-  lastUpdateTimestamp: "2022-06-28T13:57:41Z"
+  buildstatus: none
+  lastUpdateTimestamp: "2023-01-06T11:06:54Z"
 
 ---
 apiVersion: fission.io/v1
 kind: Function
 metadata:
   creationTimestamp: null
-  name: onboarding-steps-us-fn
+  name: onb-us-steps-fn
   namespace: default
 spec:
   InvokeStrategy:
@@ -38,18 +38,24 @@ spec:
       MaxScale: 3
       MinScale: 1
       SpecializationTimeout: 120
-      TargetCPUPercent: 80
+      TargetCPUPercent: 0
+      hpaMetrics:
+      - resource:
+          name: cpu
+          target:
+            averageUtilization: 80
+            type: Utilization
+        type: Resource
     StrategyType: execution
   concurrency: 500
   environment:
-    name: onboarding-steps-us-env
+    name: onb-us-steps-env
     namespace: default
   functionTimeout: 60
   idletimeout: 120
   package:
-    functionName: main.get_onboarding_step_us
     packageref:
-      name: onboarding-steps-us-fn-1daacd29-d0f6-4518-a94d-52b3d5d21bdb
+      name: onb-us-steps-fn-73f2450e-e9d5-424f-bc84-520ceb696201
       namespace: default
-  requestsPerPod: 100000
+  requestsPerPod: 10000
   resources: {}
