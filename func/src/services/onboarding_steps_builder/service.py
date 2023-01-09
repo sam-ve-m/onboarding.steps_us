@@ -1,5 +1,5 @@
-from src.domain.enums.onboarding_steps.onboarding_steps import OnboardingStepsEnum
-from src.domain.user.model import User
+from func.src.domain.enums.onboarding_steps.onboarding_steps import OnboardingStepsEnum
+from func.src.domain.user.model import User
 
 
 class OnboardingStepBuilder:

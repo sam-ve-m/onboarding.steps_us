@@ -2,11 +2,11 @@ from enum import Enum
 
 from etria_logger import Gladsheim
 
-from src.domain.enums.file.selfie_file import UserSelfie
-from src.domain.enums.file.term_file import UserTerms
-from src.domain.enums.file.user_file import UserDocument
-from src.domain.exceptions.model import InvalidFileType
-from src.infrastructures.s3.infrastructure import S3Infrastructure
+from func.src.domain.enums.file.selfie_file import UserSelfie
+from func.src.domain.enums.file.term_file import UserTerms
+from func.src.domain.enums.file.user_file import UserDocument
+from func.src.domain.exceptions.model import InvalidFileType
+from func.src.infrastructures.s3.infrastructure import S3Infrastructure
 
 
 class FileRepository:

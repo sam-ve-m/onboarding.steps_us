@@ -5,10 +5,10 @@ from flask import request, Request, Response
 from heimdall_client.bifrost import Heimdall
 from heimdall_client.bifrost import HeimdallStatusResponses
 
-from src.domain.enums.response.code import InternalCode
-from src.domain.exceptions.model import UnauthorizedError
-from src.domain.response.model import ResponseModel
-from src.services.onboarding_steps.service import OnboardingSteps
+from func.src.domain.enums.response.code import InternalCode
+from func.src.domain.exceptions.model import UnauthorizedError
+from func.src.domain.response.model import ResponseModel
+from func.src.services.onboarding_steps.service import OnboardingSteps
 
 
 async def get_onboarding_step_us(request: Request = request) -> Response:

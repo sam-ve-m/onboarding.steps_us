@@ -1,4 +1,4 @@
-from src.domain.enums.file.term_file import UserTerms
+from func.src.domain.enums.file.term_file import UserTerms
 
 
 class User:

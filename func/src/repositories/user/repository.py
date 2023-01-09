@@ -1,9 +1,9 @@
 from decouple import config
 from etria_logger import Gladsheim
 
-from src.domain.exceptions.model import UserDataNotFound
-from src.domain.user.model import User
-from src.infrastructures.mongo_db.infrastructure import MongoDBInfrastructure
+from func.src.domain.exceptions.model import UserDataNotFound
+from func.src.domain.user.model import User
+from func.src.infrastructures.mongo_db.infrastructure import MongoDBInfrastructure
 
 
 class UserRepository:

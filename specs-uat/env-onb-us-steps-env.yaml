@@ -2,20 +2,24 @@ apiVersion: fission.io/v1
 kind: Environment
 metadata:
   creationTimestamp: null
-  name: onboarding-steps-us-env
+  name: onb-us-steps-env
   namespace: default
 spec:
   builder:
-    command: build
-    image: nexus.sigame.com.br/fission-builder-3.8:0.0.1
-  imagepullsecret: "nexus-v3"
+    container:
+      name: ""
+      resources: {}
+  imagepullsecret: nexus-v3
   keeparchive: false
   resources: {}
   runtime:
-    image: nexus.sigame.com.br/fission-async:0.1.6
+    container:
+      name: ""
+      resources: {}
+    image: nexus.sigame.com.br/fission-onboarding-us-steps:0.1.0
     podspec:
       containers:
-      - name: onboarding-steps-us-env
+      - name: onb-us-steps-env
         env:
         - name: AWS_BUCKET_USERS_FILES
           value: "dtvm-users-files-uat"

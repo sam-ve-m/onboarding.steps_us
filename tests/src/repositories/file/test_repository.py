@@ -5,10 +5,10 @@ import pytest
 from etria_logger import Gladsheim
 from pytest import mark
 
-from src.domain.enums.file.user_file import UserDocument
-from src.domain.exceptions.model import InvalidFileType
-from src.infrastructures.s3.infrastructure import S3Infrastructure
-from src.repositories.file.repository import FileRepository
+from func.src.domain.enums.file.user_file import UserDocument
+from func.src.domain.exceptions.model import InvalidFileType
+from func.src.infrastructures.s3.infrastructure import S3Infrastructure
+from func.src.repositories.file.repository import FileRepository
 
 user_file_type_stub = UserDocument.DOCUMENT_BACK
 unique_id_stub = "uniqueid"
